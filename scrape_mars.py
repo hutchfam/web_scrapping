@@ -25,11 +25,6 @@ def mars_news():
     teaser = article.find('div', class_='article_teaser_body').get_text()
     return mars_news
 
-def init_browser():
-    from webdriver_manager.chrome import ChromeDriverManager
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    return Browser('chrome', **executable_path)
-
 def mars_image():
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(url)
@@ -42,11 +37,6 @@ def mars_image():
 #print(feature_img_url)
     return mars_image
 
-def init_browser():
-    from webdriver_manager.chrome import ChromeDriverManager
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    return Browser('chrome', **executable_path)
-
 def mars_facts():
     url = "https://space-facts.com/mars/"
     browser.visit(url)
@@ -58,11 +48,6 @@ def mars_facts():
     mars_earth_facts_html="mars_facts.html"
     mars_earth_facts_df.to_html(mars_earth_facts_html)
     return mars_facts
-
-def init_browser():
-    from webdriver_manager.chrome import ChromeDriverManager
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    return Browser('chrome', **executable_path)
 
 def mars_hemisphere_img():
     url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
