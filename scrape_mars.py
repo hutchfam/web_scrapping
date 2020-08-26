@@ -19,13 +19,19 @@ def mars():
     html = browser.html
     news_soup = bs(html, 'html.parser')
     
-    #article= soup.select_one("ul.item_list li.slide")
+    article= news_soup.select_one("ul.item_list li.slide")
     #article.find('div', class_='content_title')
-    title = news_soup.find('div', class_='content_title').text()
-    teaser = news_soup.find('div', class_='article_teaser_body').text()
+    title = article.find('div', class_='content_title').get_text()
+    teaser = article.find('div', class_='article_teaser_body').get_text()
+    img=mars_image()
+    facts= mars_facts()
+    mars_hemi = mars_hemisphere_img()
     teaser_title = {
         "title": title, 
-        "teaser": teaser
+        "teaser": teaser,
+        "image_of_mars": img,
+        "mars_facts": facts,
+        "mars_hemisphere_image_urls": mars_hemi
         }
     return teaser_title
 
@@ -51,12 +57,12 @@ def mars_facts():
     
     time.sleep(5)
     
-    mars_earth_facts_df=pd.read_html(url)[1]
+    mars_earth_facts_df=pd.read_html(url)[0]
 #fact_table[1]
-    mars_earth_facts_df.columns=["Mars/Earth Comparison Description", "Mars Values", "Earth Values"]
+    mars_earth_facts_df.columns=["Mars Values", "Earth Values"]
     mars_earth_facts_html="mars_facts.html"
-    mars_earth_facts_df.to_html(mars_earth_facts_html)
-    return mars_earth_facts_html
+   # mars_earth_facts_df.to_html(mars_earth_facts_html)
+    return mars_earth_facts_df.to_html(mars_earth_facts_html)
 
 def mars_hemisphere_img():
     url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"

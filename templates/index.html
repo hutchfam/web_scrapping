@@ -6,6 +6,24 @@
   <title>Document</title>
 </head>
 <body>
-  <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+<div><p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+  <div>
+    <h2>Mars:</h2>
+    <h3>Max Temp: {{mars.title}}</h3>
+    <h3>Min Temp: {{mars.teaser}}</h3>
+    <img src="{{ mars.image_of_mars }}" alt="Mars Latest">
+    <img src="{{ mars_hemisphere_image_urls }}" alt="Mars Hemispheres">
+    <div>
+      <table>
+        <tr>
+          {{mars.mars_facts}}
+        </tr>
+
+        </table>
+      </div>
+    
+</div>
+  </div>
 </body>
+
 </html>

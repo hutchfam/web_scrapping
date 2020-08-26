@@ -8,13 +8,14 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars")
 
 @app.route("/")
 def home():
-    mars = mongo.db.collection.find_one()
+    mars = mongo.db.mars.find_one()
     return render_template("index.html", mars=mars)
 
 @app.route("/scrape")
 def scrape():
-    mars=scrape_mars.mars()
-    mongo.db.update({}, mars, upsert=True)
+    mars=mongo.db.mars
+    red_mars=scrape_mars.mars()
+    mars.update({}, red_mars, upsert=True)
     return redirect("/")
 
 if __name__ == "__main__":
