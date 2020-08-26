@@ -57,11 +57,11 @@ def mars_facts():
     
     time.sleep(5)
     
-    mars_earth_facts_df=pd.read_html(url)[0]
+    mars_earth_facts_df=pd.read_html(url)[1]
 #fact_table[1]
-    mars_earth_facts_df.columns=["Mars Values", "Earth Values"]
+    mars_earth_facts_df.columns=["Difference between Mars and Earth", "Mars Values", "Earth Values"]
     mars_earth_facts_html="mars_facts.html"
-   # mars_earth_facts_df.to_html(mars_earth_facts_html)
+    mars_earth_facts_df.to_html(mars_earth_facts_html)
     return mars_earth_facts_df.to_html(mars_earth_facts_html)
 
 def mars_hemisphere_img():
@@ -85,8 +85,8 @@ def mars_hemisphere_img():
         soup = bs(mars_partial_img_html, 'html.parser')
         img_url = head_url + soup.find('img', class_='wide-image')['src']
         mars_hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
-        #mars_hemisphere_image_urls
-    return mars_hemisphere_image_urls
+        mars_hemisphere_image_urls
+    return mars_hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
 
 
 #def scrape_info():
